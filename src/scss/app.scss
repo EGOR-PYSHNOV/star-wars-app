@@ -1,0 +1,708 @@
+@font-face {
+  font-family: 'StarWarsJedi';
+  src: url('./fonts/Starjedi.ttf');
+  font-style: normal;
+}
+@font-face {
+  font-family: 'StarWarsHol';
+  src: url('./fonts/Starjhol.ttf');
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+}
+.star {
+  &__wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+}
+
+.header {
+  display: flex;
+  margin-bottom: 50px;
+  &__logo {
+    font-size: 40px;
+
+    flex: 0 1 30%;
+    a {
+      color: #ffe81f;
+      text-decoration: none;
+    }
+  }
+  &__menu {
+    font-family: 'StarWarsHol';
+    display: flex;
+    justify-content: space-between;
+    flex: 0 1 40%;
+    li {
+      list-style-type: none;
+
+      a {
+        text-decoration: none;
+        transition: all 0.2s ease;
+        &.active {
+          color: #ffe81f;
+        }
+      }
+      &:hover {
+        a {
+          color: #ffe81f;
+        }
+      }
+    }
+  }
+  &__color {
+    padding-left: 50px;
+  }
+}
+
+.star {
+  &__info {
+    display: flex;
+    background-color: #1f1c1c;
+    padding: 20px;
+    min-height: 180px;
+    align-items: center;
+    border-radius: 20px;
+    flex: 0 1 50%;
+  }
+  &__img {
+    width: 200px;
+    padding: 0 20px;
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+  }
+  &__desc {
+    &-title {
+      font-size: 30px;
+      text-align: center;
+    }
+    &-character {
+      li {
+        list-style-type: none;
+        font-size: 15px;
+        padding: 5px 0;
+        border-top: 1px solid #635c5c;
+      }
+    }
+  }
+  &__choose {
+    margin: auto;
+  }
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 50px;
+  &__items {
+    background-color: #1f1c1c;
+    border-radius: 20px;
+    padding: 0;
+    border: 1px solid #635c5c;
+    margin: 0;
+    min-height: 500px;
+    flex: 0 1 38%;
+    li {
+      list-style-type: none;
+      font-size: 14px;
+      padding: 15px;
+      cursor: pointer;
+      &:not(:first-child) {
+        border-top: 1px solid #635c5c;
+      }
+    }
+  }
+}
+
+//loader
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: rgb(145, 14, 14);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+.toggle-container {
+  position: relative;
+  align-self: center;
+  flex: 1 1 30%;
+  display: flex;
+  justify-content: center;
+  input {
+    position: absolute;
+    left: -99em;
+  }
+}
+
+.toggle {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  width: 90px;
+  height: 50px;
+  background-color: #efc371;
+  border-radius: 50px;
+  transition: background-color 600ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  .obi {
+    display: block;
+  }
+  .vader {
+    display: none;
+  }
+
+  &:before {
+    content: 'obi';
+    position: absolute;
+    left: -50px;
+    top: 15px;
+    font-size: 18px;
+    color: #d7d7d7;
+  }
+
+  &:after {
+    content: 'darth';
+    position: absolute;
+    right: -77px;
+    top: 15px;
+    font-size: 18px;
+    color: #d7d7d7;
+  }
+}
+
+.starwars-toggle {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  top: 3px;
+  left: 3px;
+  width: 50px - 6;
+  height: 50px - 6;
+  background-color: #ffcf96;
+  border-radius: 50px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: all 700ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  //transform:  rotate(-45deg);
+}
+
+.vader {
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 5px;
+  border-radius: 39px;
+}
+
+.obi {
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 5px;
+  border-radius: 39px;
+}
+
+input:checked {
+  + .toggle {
+    background-color: #282828;
+
+    &:before {
+      color: #749ed7;
+    }
+
+    &:after {
+      color: #ffffff;
+    }
+
+    .starwars-toggle {
+      background-color: black;
+      transform: translate3d(40px, 0, 0) rotate(0);
+      .vader {
+        display: block;
+      }
+      .obi {
+        display: none;
+      }
+    }
+  }
+}
+
+.night__wrapper {
+  position: relative;
+  .night {
+    position: absolute;
+
+    top: 0;
+    height: 100%;
+
+    z-index: -1;
+    &:first-child {
+      left: 0;
+      -webkit-transform: rotateZ(45deg);
+      transform: rotateZ(45deg);
+    }
+    &:last-child {
+      right: 0;
+      -webkit-transform: rotateZ(145deg);
+      transform: rotateZ(145deg);
+    }
+  }
+}
+
+.shooting_star {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 2px;
+
+  border-radius: 999px;
+
+  -webkit-animation: tail 3000ms ease-in-out infinite, shooting 3000ms ease-in-out infinite;
+  animation: tail 3000ms ease-in-out infinite, shooting 3000ms ease-in-out infinite;
+}
+.shooting_star::before,
+.shooting_star::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - 1px);
+  right: 0;
+  height: 2px;
+
+  -webkit-transform: translateX(50%) rotateZ(45deg);
+  transform: translateX(50%) rotateZ(45deg);
+  border-radius: 100%;
+  -webkit-animation: shining 3000ms ease-in-out infinite;
+  animation: shining 3000ms ease-in-out infinite;
+}
+.shooting_star::after {
+  -webkit-transform: translateX(50%) rotateZ(-45deg);
+  transform: translateX(50%) rotateZ(-45deg);
+}
+.shooting_star:nth-child(1) {
+  top: calc(50% - -141px);
+  left: calc(50% - 38px);
+  -webkit-animation-delay: 9832ms;
+  animation-delay: 9832ms;
+}
+.shooting_star:nth-child(1)::before,
+.shooting_star:nth-child(1)::after,
+.shooting_star:nth-child(1)::after {
+  -webkit-animation-delay: 9832ms;
+  animation-delay: 9832ms;
+}
+.shooting_star:nth-child(2) {
+  top: calc(50% - 105px);
+  left: calc(50% - 213px);
+  -webkit-animation-delay: 9043ms;
+  animation-delay: 9043ms;
+}
+.shooting_star:nth-child(2)::before,
+.shooting_star:nth-child(2)::after,
+.shooting_star:nth-child(2)::after {
+  -webkit-animation-delay: 9043ms;
+  animation-delay: 9043ms;
+}
+.shooting_star:nth-child(3) {
+  top: calc(50% - 45px);
+  left: calc(50% - 193px);
+  -webkit-animation-delay: 2149ms;
+  animation-delay: 2149ms;
+}
+.shooting_star:nth-child(3)::before,
+.shooting_star:nth-child(3)::after,
+.shooting_star:nth-child(3)::after {
+  -webkit-animation-delay: 2149ms;
+  animation-delay: 2149ms;
+}
+.shooting_star:nth-child(4) {
+  top: calc(50% - -169px);
+  left: calc(50% - 75px);
+  -webkit-animation-delay: 8487ms;
+  animation-delay: 8487ms;
+}
+.shooting_star:nth-child(4)::before,
+.shooting_star:nth-child(4)::after,
+.shooting_star:nth-child(4)::after {
+  -webkit-animation-delay: 8487ms;
+  animation-delay: 8487ms;
+}
+.shooting_star:nth-child(5) {
+  top: calc(50% - -42px);
+  left: calc(50% - 18px);
+  -webkit-animation-delay: 9507ms;
+  animation-delay: 9507ms;
+}
+.shooting_star:nth-child(5)::before,
+.shooting_star:nth-child(5)::after,
+.shooting_star:nth-child(5)::after {
+  -webkit-animation-delay: 9507ms;
+  animation-delay: 9507ms;
+}
+.shooting_star:nth-child(6) {
+  top: calc(50% - -10px);
+  left: calc(50% - 244px);
+  -webkit-animation-delay: 1650ms;
+  animation-delay: 1650ms;
+}
+.shooting_star:nth-child(6)::before,
+.shooting_star:nth-child(6)::after,
+.shooting_star:nth-child(6)::after {
+  -webkit-animation-delay: 1650ms;
+  animation-delay: 1650ms;
+}
+.shooting_star:nth-child(7) {
+  top: calc(50% - -195px);
+  left: calc(50% - 200px);
+  -webkit-animation-delay: 8846ms;
+  animation-delay: 8846ms;
+}
+.shooting_star:nth-child(7)::before,
+.shooting_star:nth-child(7)::after,
+.shooting_star:nth-child(7)::after {
+  -webkit-animation-delay: 8846ms;
+  animation-delay: 8846ms;
+}
+.shooting_star:nth-child(8) {
+  top: calc(50% - 85px);
+  left: calc(50% - 287px);
+  -webkit-animation-delay: 7532ms;
+  animation-delay: 7532ms;
+}
+.shooting_star:nth-child(8)::before,
+.shooting_star:nth-child(8)::after,
+.shooting_star:nth-child(8)::after {
+  -webkit-animation-delay: 7532ms;
+  animation-delay: 7532ms;
+}
+.shooting_star:nth-child(9) {
+  top: calc(50% - 165px);
+  left: calc(50% - 179px);
+  -webkit-animation-delay: 7764ms;
+  animation-delay: 7764ms;
+}
+.shooting_star:nth-child(9)::before,
+.shooting_star:nth-child(9)::after,
+.shooting_star:nth-child(9)::after {
+  -webkit-animation-delay: 7764ms;
+  animation-delay: 7764ms;
+}
+.shooting_star:nth-child(10) {
+  top: calc(50% - 16px);
+  left: calc(50% - 42px);
+  -webkit-animation-delay: 4799ms;
+  animation-delay: 4799ms;
+}
+.shooting_star:nth-child(10)::before,
+.shooting_star:nth-child(10)::after,
+.shooting_star:nth-child(10)::after {
+  -webkit-animation-delay: 4799ms;
+  animation-delay: 4799ms;
+}
+.shooting_star:nth-child(11) {
+  top: calc(50% - -153px);
+  left: calc(50% - 89px);
+  -webkit-animation-delay: 7207ms;
+  animation-delay: 7207ms;
+}
+.shooting_star:nth-child(11)::before,
+.shooting_star:nth-child(11)::after,
+.shooting_star:nth-child(11)::after {
+  -webkit-animation-delay: 7207ms;
+  animation-delay: 7207ms;
+}
+.shooting_star:nth-child(12) {
+  top: calc(50% - -165px);
+  left: calc(50% - 106px);
+  -webkit-animation-delay: 8537ms;
+  animation-delay: 8537ms;
+}
+.shooting_star:nth-child(12)::before,
+.shooting_star:nth-child(12)::after,
+.shooting_star:nth-child(12)::after {
+  -webkit-animation-delay: 8537ms;
+  animation-delay: 8537ms;
+}
+.shooting_star:nth-child(13) {
+  top: calc(50% - 160px);
+  left: calc(50% - 277px);
+  -webkit-animation-delay: 7442ms;
+  animation-delay: 7442ms;
+}
+.shooting_star:nth-child(13)::before,
+.shooting_star:nth-child(13)::after,
+.shooting_star:nth-child(13)::after {
+  -webkit-animation-delay: 7442ms;
+  animation-delay: 7442ms;
+}
+.shooting_star:nth-child(14) {
+  top: calc(50% - -35px);
+  left: calc(50% - 63px);
+  -webkit-animation-delay: 6793ms;
+  animation-delay: 6793ms;
+}
+.shooting_star:nth-child(14)::before,
+.shooting_star:nth-child(14)::after,
+.shooting_star:nth-child(14)::after {
+  -webkit-animation-delay: 6793ms;
+  animation-delay: 6793ms;
+}
+.shooting_star:nth-child(15) {
+  top: calc(50% - 141px);
+  left: calc(50% - 243px);
+  -webkit-animation-delay: 3833ms;
+  animation-delay: 3833ms;
+}
+.shooting_star:nth-child(15)::before,
+.shooting_star:nth-child(15)::after,
+.shooting_star:nth-child(15)::after {
+  -webkit-animation-delay: 3833ms;
+  animation-delay: 3833ms;
+}
+.shooting_star:nth-child(16) {
+  top: calc(50% - 27px);
+  left: calc(50% - 169px);
+  -webkit-animation-delay: 7664ms;
+  animation-delay: 7664ms;
+}
+.shooting_star:nth-child(16)::before,
+.shooting_star:nth-child(16)::after,
+.shooting_star:nth-child(16)::after {
+  -webkit-animation-delay: 7664ms;
+  animation-delay: 7664ms;
+}
+.shooting_star:nth-child(17) {
+  top: calc(50% - -139px);
+  left: calc(50% - 46px);
+  -webkit-animation-delay: 3595ms;
+  animation-delay: 3595ms;
+}
+.shooting_star:nth-child(17)::before,
+.shooting_star:nth-child(17)::after,
+.shooting_star:nth-child(17)::after {
+  -webkit-animation-delay: 3595ms;
+  animation-delay: 3595ms;
+}
+.shooting_star:nth-child(18) {
+  top: calc(50% - 119px);
+  left: calc(50% - 291px);
+  -webkit-animation-delay: 1756ms;
+  animation-delay: 1756ms;
+}
+.shooting_star:nth-child(18)::before,
+.shooting_star:nth-child(18)::after,
+.shooting_star:nth-child(18)::after {
+  -webkit-animation-delay: 1756ms;
+  animation-delay: 1756ms;
+}
+.shooting_star:nth-child(19) {
+  top: calc(50% - -155px);
+  left: calc(50% - 257px);
+  -webkit-animation-delay: 4647ms;
+  animation-delay: 4647ms;
+}
+.shooting_star:nth-child(19)::before,
+.shooting_star:nth-child(19)::after,
+.shooting_star:nth-child(19)::after {
+  -webkit-animation-delay: 4647ms;
+  animation-delay: 4647ms;
+}
+.shooting_star:nth-child(20) {
+  top: calc(50% - -22px);
+  left: calc(50% - 290px);
+  -webkit-animation-delay: 6344ms;
+  animation-delay: 6344ms;
+}
+.shooting_star:nth-child(20)::before,
+.shooting_star:nth-child(20)::after,
+.shooting_star:nth-child(20)::after {
+  -webkit-animation-delay: 6344ms;
+  animation-delay: 6344ms;
+}
+
+@-webkit-keyframes tail {
+  0% {
+    width: 0;
+  }
+  30% {
+    width: 100px;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes tail {
+  0% {
+    width: 0;
+  }
+  30% {
+    width: 100px;
+  }
+  100% {
+    width: 0;
+  }
+}
+@-webkit-keyframes shining {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 30px;
+  }
+  100% {
+    width: 0;
+  }
+}
+@keyframes shining {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 30px;
+  }
+  100% {
+    width: 0;
+  }
+}
+@-webkit-keyframes shooting {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(300px);
+    transform: translateX(300px);
+  }
+}
+@keyframes shooting {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(300px);
+    transform: translateX(300px);
+  }
+}
+@-webkit-keyframes sky {
+  0% {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  100% {
+    -webkit-transform: rotate(405deg);
+    transform: rotate(405deg);
+  }
+}
+@keyframes sky {
+  0% {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  100% {
+    -webkit-transform: rotate(405deg);
+    transform: rotate(405deg);
+  }
+}
+
+.button {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border: 3px solid #1e90ff;
+  position: fixed;
+  right: 20px;
+  bottom: 10%;
+  cursor: pointer;
+}
+.button--play {
+  border-radius: 50%;
+}
+.button--play .button__shape {
+  width: 25px;
+  height: 52px;
+  background: #1e90ff;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+.button--play .button__shape--one {
+  -webkit-clip-path: polygon(0 0, 100% 25%, 100% 75%, 0% 100%);
+  -webkit-transform: translateX(5px);
+  transform: translateX(5px);
+}
+.button--play .button__shape--two {
+  -webkit-clip-path: polygon(0 25%, 100% 50%, 100% 50%, 0 75%);
+  -webkit-transform: translateX(4.9px);
+  transform: translateX(4.9px);
+}
+.button--play.button--active .button__shape--one {
+  -webkit-clip-path: polygon(0 15%, 50% 15%, 50% 85%, 0% 85%);
+  -webkit-transform: translateX(0px);
+  transform: translateX(0px);
+}
+.button--play.button--active .button__shape--two {
+  -webkit-clip-path: polygon(50% 15%, 100% 15%, 100% 85%, 50% 85%);
+  -webkit-transform: translateX(0px);
+  transform: translateX(0px);
+}
