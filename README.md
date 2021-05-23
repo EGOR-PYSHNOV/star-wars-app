@@ -1,5 +1,7 @@
 Star-wars app
 
+Working with api(swapi.dev)
+
 **Stack:**
 
 - ReactJS (useState, useReducer, useEffect)
